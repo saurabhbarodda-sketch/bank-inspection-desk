@@ -1,9 +1,39 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#12305a"><title>Bank Inspection Desk</title><style>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#12305a"><title>Bank Inspection Desk V6 Verified</title><style>
 :root{font-family:system-ui,-apple-system,Segoe UI,Arial,sans-serif;color:#172a42;background:#f3f6fa}*{box-sizing:border-box}body{margin:0}header{background:#12305a;color:white;padding:17px 18px}header h1{font-size:21px;margin:0}header p{margin:5px 0 0;color:#c9d8ed;font-size:13px}.wrap{max-width:980px;margin:auto;padding:16px}nav{display:flex;gap:8px;margin:0 0 16px;flex-wrap:wrap}button,.btn{border:0;background:#e8edf5;color:#203756;padding:11px 14px;border-radius:10px;font-weight:650;cursor:pointer;font-size:14px}button.primary{background:#1764bc;color:white}button.danger{background:#fee9e9;color:#a02a2a}.panel{background:white;padding:20px;border-radius:15px;box-shadow:0 2px 14px #20345a10;margin-bottom:15px}h2{font-size:19px;margin:0 0 13px}h3{font-size:16px;margin:23px 0 9px;color:#12305a}label{display:block;font-size:13px;font-weight:700;margin:12px 0 5px}input,select,textarea{width:100%;font:inherit;font-size:15px;padding:11px;border:1px solid #cbd4e0;border-radius:9px;background:white;color:#172a42}textarea{min-height:90px;resize:vertical}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 14px}.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}.muted{color:#64748b;font-size:13px}.typegrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.type{border:1px solid #dbe3ee;text-align:left;background:#f8faff;padding:16px;min-height:75px}.type:hover{border-color:#1764bc}.subheading{background:#eef3fa;padding:10px;border-radius:8px;font-size:14px;margin-top:20px}.visit{display:flex;justify-content:space-between;align-items:center;border-top:1px solid #e9edf3;padding:12px 0;gap:10px}.visit b{display:block}.pill{display:inline-block;padding:3px 8px;border-radius:100px;background:#eef3fa;font-size:12px}.check{padding:13px 0;border-bottom:1px solid #ecf0f4}.check .grid{align-items:start}.check label{margin:0 0 7px}.check select{max-width:210px}.hidden{display:none!important}#notice{margin-bottom:12px;color:#13653a;font-size:13px;min-height:16px}.warning{border-left:4px solid #dc951b;background:#fff9e7;padding:12px;font-size:13px;border-radius:6px}.report{font-family:Arial,sans-serif;font-size:12px;line-height:1.48;color:black}.report h1{text-align:center;font-size:19px}.report h2{font-size:14px;border-bottom:1px solid #bbb;padding-bottom:5px;margin:20px 0 7px;color:#111}.report table{width:100%;border-collapse:collapse}.report td,.report th{border:1px solid #999;padding:7px;vertical-align:top;overflow-wrap:anywhere}.report th{background:#eef2f6;text-align:left}.report .pre{white-space:pre-wrap}.report .photo{max-width:210px;max-height:190px;object-fit:contain;margin:7px;border:1px solid #ddd}footer{margin:25px 0;color:#64748b;font-size:12px;text-align:center}@media(max-width:640px){.grid,.typegrid{grid-template-columns:1fr}.panel{padding:16px}.wrap{padding:12px}.visit{align-items:flex-start}}@media print{header,nav,.noprint,#notice,footer{display:none!important}body{background:white}.wrap{max-width:none;padding:0}.panel{box-shadow:none;padding:0;margin:0}#reportView{display:block!important}.report{font-size:10.5pt}@page{size:A4;margin:16mm}}
-</style></head><body><header><div class="wrap" style="padding:0"><h1>Bank Inspection Desk · V3 Privacy</h1><p>Capture on site. Draft reports in minutes. Offline-first prototype.</p></div></header><div class="wrap"><nav class="noprint"><button onclick="home()">Dashboard</button><button onclick="newVisit()" class="primary">+ New Inspection</button><button onclick="showBackups()">Backup / Restore</button></nav><div id="notice" class="noprint"></div><main id="app"></main><footer class="noprint">Data is stored in this browser on this device until deleted. After saving a PDF, confirm and delete the visit and photos. Existing PDF/backup files are unaffected. Not a bank-approved system. Do not enter real confidential customer data without your institution's approval.</footer></div><script>
+
+/* Retail pre-sanction: two-page Annexure 19 print layout */
+.retail-form{font-family:Arial,Helvetica,sans-serif;color:#111;font-size:10px;line-height:1.24}
+.retail-page{width:100%;max-width:190mm;margin:auto;box-sizing:border-box;background:#fff}
+.retail-head{display:flex;justify-content:space-between;align-items:center;border-bottom:1.2px solid #222;padding:0 0 5px;margin-bottom:5px}
+.retail-brand{font-weight:700;font-size:14px}.retail-annex{font-weight:bold;font-size:10px;text-align:right}
+.retail-title{text-align:center;font-weight:700;font-size:11.5px;text-decoration:underline;margin:5px 0 9px;letter-spacing:.1px}
+.retail-form table{width:100%;border-collapse:collapse;table-layout:fixed;margin:0}
+.retail-form td,.retail-form th{border:1px solid #777;padding:4px 5px;vertical-align:top;overflow-wrap:anywhere;font-weight:normal;background:white}
+.retail-form td.n{width:6%;text-align:center;font-weight:bold}
+.retail-form td.label{width:35%;font-weight:600}
+.retail-form td.fill{width:59%;min-height:16px;white-space:pre-wrap}
+.retail-form .band{font-weight:700;background:#efefef!important;padding:4px 5px}
+.retail-form .subrow td{font-size:9.7px;padding:3px 5px}
+.retail-form .line{display:flex;gap:6px;justify-content:space-between}.retail-form .sign{margin:20px 0 0 auto;text-align:center;width:43%}
+.retail-form .sign .rule{border-top:1px solid #222;margin:0 0 5px}
+.retail-form .tiny{font-size:9px}.retail-form .v{white-space:pre-wrap;overflow-wrap:anywhere}
+.retail-form .pagebreak{break-before:page;page-break-before:always}
+.retail-form .detailtable th{background:#f0f0f0;font-weight:700}
+.retail-form .detailtable td{text-align:left}
+@media print{
+ @page{size:A4 portrait;margin:9mm 10mm}
+ .retail-page{width:190mm;max-width:100%;margin:0;break-inside:avoid}
+ .retail-form{font-size:9.3px;line-height:1.19}
+ .retail-form td,.retail-form th{padding:3px 4px}
+ .retail-form .subrow td{padding:2.5px 4px;font-size:9px}
+ .retail-form .retail-title{margin:3px 0 7px}
+ .retail-form .retail-head{padding-bottom:3px}
+ .retail-form .sign{margin-top:15px}
+}
+</style></head><body><header><div class="wrap" style="padding:0"><h1>Bank Inspection Desk · V6 Verified Retail Form</h1><p>Capture on site. Draft reports in minutes. Offline-first prototype.</p></div></header><div class="wrap"><nav class="noprint"><button onclick="home()">Dashboard</button><button onclick="newVisit()" class="primary">+ New Inspection</button><button onclick="showBackups()">Backup / Restore</button></nav><div id="notice" class="noprint"></div><main id="app"></main><footer class="noprint">Data is stored in this browser on this device until deleted. After saving a PDF, confirm and delete the visit and photos. Existing PDF/backup files are unaffected. Not a bank-approved system. Do not enter real confidential customer data without your institution's approval.</footer></div><script>
 'use strict';
 const TYPES={
-'retail_pre':{name:'Retail • Pre-Sanction (Annexure 19)',source:'Bank of Baroda Annexure–19, uploaded two-page format; field sequence adapted for digital entry',sections:[
+'retail_pre':{name:'Retail • Pre-Sanction (Annexure 19)',source:'',sections:[
 ['Applicant & loan particulars',['Name of applicant','Father’s / husband’s name','Residential address','Purpose of loan','Product / article to be purchased','Name of supplier','Purchase price inclusive of taxes (₹)','Quotation genuineness: verification mode','Quotation verification: telephone number','Quotation verification: person contacted','Quotation verification: date / finding']],
 ['Residence verification',['Residence address proof (ration card / voter ID / passport / PAN / rent agreement / utility bill / other)','Document reference / age of utility bill','Living with parents / relatives?','Residence tenure (owned / rented / leased / employer provided)','Place visited and identification landmark','Residence verification observations']],
 ['Occupation: salaried service',['Name of employer','Employer address','Designation','Working since','Employee number','Employment status (confirmed / probation / contract)','Office / residence / mobile number']],
@@ -69,7 +99,95 @@ function shrink(file){return new Promise((resolve,reject)=>{let reader=new FileR
 function renderPhotos(){let el=document.getElementById('photolist');if(!el||!current)return;el.innerHTML=current.photos.map((p,i)=>`<div style="display:inline-block;margin:8px"><img src="${p.data}" alt="Visit photo" style="width:90px;height:90px;object-fit:cover;display:block"><button onclick="dropPhoto(${i})">Remove</button></div>`).join('')}
 async function dropPhoto(i){collect();current.photos.splice(i,1);renderPhotos();await put(current)}
 function rows(items){return items.map(([a,b])=>`<tr><th style="width:38%">${safe(a)}</th><td class="pre">${safe(b||'')}</td></tr>`).join('')}
-function reportHtml(x){let spec=TYPES[x.type],checkRows=spec.checks.map((q,i)=>{let c=x.checks?.[i]||{};return `<tr><td>${i+1}. ${safe(q)}</td><td>${safe(statusText(c.status))}</td><td class="pre">${safe(c.remark||'')}</td></tr>`}).join('');let exceptions=spec.checks.filter((_,i)=>x.checks?.[i]?.status==='no').length;return `<article class="report"><h1>${safe(spec.name.toUpperCase())} REPORT</h1><p style="text-align:center">Inspection Ref: ${safe(x.id)} | Date: ${safe(x.date||'')} | Status: ${safe(x.status||'Draft')}</p><p style="text-align:center;font-size:10px">${safe(spec.source||'Custom draft template, subject to bank policy')}</p><h2>1. General information</h2><table>${rows([['Customer / entity / branch',x.customer],['Site address',x.address],['Inspector',x.officer],['Reporting office',x.branch],['Person contacted',x.contact],['Purpose',x.purpose]])}</table><h2>2. Inspection particulars</h2>${(()=>{let n=0;return fieldSections(spec).map(([head,fields])=>`<h3>${safe(head)}</h3><table>${rows(fields.map(f=>[f,x.fields?.[n++]]))}</table>`).join('')})()}<h2>3. Checklist findings</h2><table><thead><tr><th>Inspection parameter</th><th>Status</th><th>Evidence / observation</th></tr></thead><tbody>${checkRows}</tbody></table><p><b>Checklist exceptions marked:</b> ${exceptions} (subject to inspector review).</p><h2>4. Site observations</h2><p class="pre">${safe(x.notes||'')}</p><h2>5. Exceptions / irregularities</h2><p class="pre">${safe(x.observations||'')}</p><h2>6. Recommendations / assessment</h2><p class="pre">${safe(x.recommendation||'')}</p><h2>7. Action and follow-up</h2><table>${rows([['Action / person responsible',x.action],['Follow-up date',x.followup]])}</table>${x.photos?.length?`<h2>8. Photographic evidence</h2>${x.photos.map((p,i)=>`<span style="display:inline-block;text-align:center"><img class="photo" src="${p.data}" alt="Photo ${i+1}"><br>Photo ${i+1}: ${safe(p.name)}</span>`).join('')}`:''}<p style="margin-top:40px">Inspection Officer: ____________________ &nbsp;&nbsp; Date: ______________</p><p style="margin-top:22px;font-size:10px"><b>Verification note:</b> This report is a structured draft based only on information entered by the inspector. Unchecked items and omissions are not deemed verified. Subject to bank-prescribed format, independent confirmations, and authorized approval.</p></article>`}
+
+function retailPreReport(x){
+ const f=i=>safe(x.fields?.[i]||'');
+ const v=s=>safe(s||'');
+ const pair=(label,value)=>`<tr><td class="label">${label}</td><td class="fill v">${value}</td></tr>`;
+ const row=(n,label,value)=>`<tr><td class="n">${n}</td><td class="label">${label}</td><td class="fill v">${value}</td></tr>`;
+ const band=(n,title)=>`<tr><td class="n">${n}</td><td colspan="2" class="band">${title}</td></tr>`;
+ const small=(label,value)=>`<tr class="subrow"><td></td><td>${label}</td><td class="v">${value}</td></tr>`;
+ const head=(page)=>`<div class="retail-head"><span class="retail-brand">Bank of Baroda</span><span class="retail-annex">Annexure - 19</span></div><div class="retail-title">PRE-SANCTION VISIT REPORT FOR RETAIL LENDING</div>`;
+ const section=(label, pairs)=>`<tr><td class="label">${label}</td><td class="fill v">${pairs}</td></tr>`;
+ const bankTable=`<table class="detailtable"><tr><th style="width:34%">Particulars</th><th style="width:33%">With Our Bank</th><th style="width:33%">With Other Bank</th></tr>
+ <tr><td>Branch / Type of Loan</td><td>${f(47)}</td><td>${f(52)}</td></tr>
+ <tr><td>Amount Sanctioned (Rs.)</td><td>${f(48)}</td><td>${f(53)}</td></tr>
+ <tr><td>Balance Outstanding (Rs.)</td><td>${f(49)}</td><td>${f(54)}</td></tr>
+ <tr><td>Amount of Overdues (Rs.)</td><td>${f(50)}</td><td>${f(55)}</td></tr>
+ <tr><td>Asset Classification</td><td>${f(51)}</td><td>${f(56)}</td></tr></table>`;
+ const comment=[x.notes,x.observations,x.recommendation].filter(Boolean).map(s=>v(s)).join('<div style="height:4px"></div>');
+ const pg1=`<div class="retail-page">${head(1)}<table>
+ ${row('1','NAME OF THE APPLICANT',f(0)||v(x.customer))}
+ ${row('2',"FATHER'S / HUSBAND'S NAME",f(1))}
+ ${row('3','RESIDENTIAL ADDRESS',f(2)||v(x.address))}
+ ${row('4','PURPOSE OF LOAN',f(3)||v(x.purpose))}
+ ${band('5','DETAILS OF PRODUCT / ARTICLE TO BE PURCHASED AND QUOTATION')}
+ ${small('a) Name of the product / article',f(4))}
+ ${small('Name of the supplier',f(5))}
+ ${small('Purchase price (inclusive of all taxes) (Rs.)',f(6))}
+ ${small('b) Genuineness of quotation verified (mode)',f(7))}
+ ${small('Over phone no. / Person contacted',[f(8),f(9)].filter(Boolean).join(' / '))}
+ ${small('Verification date / finding',f(10))}
+ ${row('6','DATE OF VISIT',v(x.date))}
+ ${band('7','PROOF FOR VERIFICATION OF RESIDENTIAL ADDRESS')}
+ ${small('Document(s) verified',f(11))}
+ ${small('Document reference / utility bill age',f(12))}
+ ${small('Living with parents / relatives',f(13))}
+ ${small('Residence is Owned / Rented / Leased / Employer-provided',f(14))}
+ ${small('Place visited with identification landmark',f(15))}
+ ${band('8','OCCUPATION OF APPLICANT (GIVE DETAILS)')}
+ ${small('a) SERVICE: Name of Employer',f(17))}
+ ${small('Employer Address',f(18))}
+ ${small('Designation / Working since',[f(19),f(20)].filter(Boolean).join(' / '))}
+ ${small('Employee No. / Confirmed, probation or contract',[f(21),f(22)].filter(Boolean).join(' / '))}
+ ${small('Phone No. (Office / Residence / Mobile)',f(23))}
+ ${small('b) BUSINESS: Name of Firm / Address',[f(24),f(25)].filter(Boolean).join(' / '))}
+ ${small('Position in firm / Established since',[f(26),f(27)].filter(Boolean).join(' / '))}
+ ${small('Nature of business / Phone',[f(28),f(29)].filter(Boolean).join(' / '))}
+ ${small('c) SELF-EMPLOYED / PROFESSIONAL: Occupation',f(30))}
+ ${small('Address / Phone',[f(31),f(32)].filter(Boolean).join(' / '))}
+ ${band('9','EMPLOYMENT DETAILS')}
+ ${small('Details verified through',f(33))}
+ ${small('Verification date / Person contacted',f(34))}
+ ${band('10','GROSS ANNUAL / MONTHLY INCOME')}
+ ${small('Gross annual / monthly income (Rs.)',f(35))}
+ ${small('Form No. 16 for financial year ended',f(36))}
+ ${small('Salary slip for the month of',f(37))}
+ ${small('Income Tax Return for assessment year(s)',f(38))}
+ ${small('No. of dependants',f(39))}
+ ${small('Total annual / monthly deductions (Rs.)',f(40))}
+ ${small('Net annual / monthly income (Rs.)',f(41))}
+ </table></div>`;
+ const pg2=`<div class="retail-page pagebreak">${head(2)}<table>
+ ${band('11','PRESENT BANKERS')}
+ ${small('Name of Bank / Branch',[f(42),f(43)].filter(Boolean).join(' / '))}
+ ${small('Type of Account / Account Reference',f(44))}
+ ${small('Bank Statement / Passbook verification',f(45))}
+ ${small('Cheque returned: number of times',f(46))}
+ ${band('12','LOAN OUTSTANDING WITH OUR BANK / WITH OTHER BANK')}
+ </table>${bankTable}
+ <table>
+ ${band('13','DETAILS OF THE PROPERTY TO BE PURCHASED (IN CASE OF HOUSING LOANS)')}
+ ${small('Purpose (land / flat / house / renovation / takeover / construction)',f(57))}
+ ${small('Sale amount (Rs.)',f(58))}
+ ${small('Value as per valuation report (Rs.)',f(59))}
+ ${small('Sale deed value / Explanation of wide variation',f(60))}
+ ${small('Name of seller representative contacted & verification',f(61))}
+ ${small('Area as per agreement (sq. ft.)',f(62))}
+ ${small('Occupied by owner / occupier / leased out / vacant',f(63))}
+ ${small('a) Present stage of construction',f(64))}
+ ${small('b) Architect / Engineer report obtained',f(65))}
+ ${small('c) Nearby landmark for identification',f(66))}
+ ${small('Boundaries - East / West',[f(67),f(68)].filter(Boolean).join(' / '))}
+ ${small('Boundaries - North / South',[f(69),f(70)].filter(Boolean).join(' / '))}
+ <tr><td class="n">14</td><td colspan="2" class="band">COMMENTS OF VISITING OFFICER</td></tr>
+ <tr><td colspan="3" style="height:65px;white-space:pre-wrap">${comment}</td></tr>
+ </table><div style="display:flex;justify-content:space-between;margin-top:13px"><div>Date: ${v(x.date)}<div style="margin-top:7px">Place: ${v(x.address)}</div></div><div class="sign"><div class="rule"></div><b>SIGNATURE OF BANK'S OFFICIAL</b><div style="text-align:left;margin-top:7px">NAME: ${v(x.officer)}</div><div style="text-align:left;margin-top:4px">DESIGNATION: </div></div></div></div>`;
+ // Corrections to original existing app's indexed section offsets, computed from fields not hard-coded below.
+ return `<article class="retail-form">${pg1}${pg2}</article>`;
+}
+
+function reportHtml(x){if(x.type==='retail_pre')return retailPreReport(x);let spec=TYPES[x.type],checkRows=spec.checks.map((q,i)=>{let c=x.checks?.[i]||{};return `<tr><td>${i+1}. ${safe(q)}</td><td>${safe(statusText(c.status))}</td><td class="pre">${safe(c.remark||'')}</td></tr>`}).join('');let exceptions=spec.checks.filter((_,i)=>x.checks?.[i]?.status==='no').length;return `<article class="report"><h1>${safe(spec.name.toUpperCase())} REPORT</h1><p style="text-align:center">Inspection Ref: ${safe(x.id)} | Date: ${safe(x.date||'')} | Status: ${safe(x.status||'Draft')}</p><p style="text-align:center;font-size:10px">${safe(spec.source||'Custom draft template, subject to bank policy')}</p><h2>1. General information</h2><table>${rows([['Customer / entity / branch',x.customer],['Site address',x.address],['Inspector',x.officer],['Reporting office',x.branch],['Person contacted',x.contact],['Purpose',x.purpose]])}</table><h2>2. Inspection particulars</h2>${(()=>{let n=0;return fieldSections(spec).map(([head,fields])=>`<h3>${safe(head)}</h3><table>${rows(fields.map(f=>[f,x.fields?.[n++]]))}</table>`).join('')})()}<h2>3. Checklist findings</h2><table><thead><tr><th>Inspection parameter</th><th>Status</th><th>Evidence / observation</th></tr></thead><tbody>${checkRows}</tbody></table><p><b>Checklist exceptions marked:</b> ${exceptions} (subject to inspector review).</p><h2>4. Site observations</h2><p class="pre">${safe(x.notes||'')}</p><h2>5. Exceptions / irregularities</h2><p class="pre">${safe(x.observations||'')}</p><h2>6. Recommendations / assessment</h2><p class="pre">${safe(x.recommendation||'')}</p><h2>7. Action and follow-up</h2><table>${rows([['Action / person responsible',x.action],['Follow-up date',x.followup]])}</table>${x.photos?.length?`<h2>8. Photographic evidence</h2>${x.photos.map((p,i)=>`<span style="display:inline-block;text-align:center"><img class="photo" src="${p.data}" alt="Photo ${i+1}"><br>Photo ${i+1}: ${safe(p.name)}</span>`).join('')}`:''}<p style="margin-top:40px">Inspection Officer: ____________________ &nbsp;&nbsp; Date: ______________</p><p style="margin-top:22px;font-size:10px"><b>Verification note:</b> This report is a structured draft based only on information entered by the inspector. Unchecked items and omissions are not deemed verified. Subject to bank-prescribed format, independent confirmations, and authorized approval.</p></article>`}
 async function preview(k){let x=await get(k);if(!x)return msg('Visit not found');document.querySelector('#app').innerHTML=`<section class="panel"><div class="actions noprint" style="margin-bottom:16px"><button onclick="openVisit('${safe(k)}')">← Edit visit</button><button class="primary" onclick="printReport()">Print / Save PDF</button><button class="danger" onclick="deleteAfterPdf('${safe(k)}')">PDF saved? Delete this visit + photos</button><button onclick="word('${safe(k)}')">Download Word</button><button onclick="home()">Dashboard</button></div><div id="reportView">${reportHtml(x)}</div></section>`}
 function printReport(){
   // Browser print/share UI cannot report whether a PDF was really saved.
@@ -90,7 +208,37 @@ async function deleteAfterPdf(k){
     msg('Inspection and stored photos deleted from this browser. Previously exported backups/PDFs remain wherever saved.');
   }catch(err){alert('Deletion failed. Please retry; do not assume data was removed.');}
 }
-async function word(k){let x=await get(k);let full=`<!doctype html><html><head><meta charset="utf-8"><style>body{font-family:Arial;font-size:11pt}table{border-collapse:collapse;width:100%}td,th{border:1px solid #999;padding:7px}h1{text-align:center;font-size:18pt}h2{font-size:13pt;margin-top:18px}.pre{white-space:pre-wrap}img.photo{max-width:230px;max-height:200px}</style></head><body>${reportHtml(x)}</body></html>`;download(new Blob(['\ufeff',full],{type:'application/msword'}),(x.customer||'Inspection').replace(/[^a-z0-9 _-]/gi,'_')+'_Report.doc','application/msword')}
+async function word(k){let x=await get(k);let full=`<!doctype html><html><head><meta charset="utf-8"><style>body{font-family:Arial;font-size:11pt}.retail-form{font-family:Arial;font-size:10px;color:#111}.retail-head{display:flex;justify-content:space-between;border-bottom:1px solid #222}.retail-brand{font-size:14px;font-weight:bold}.retail-annex{font-size:10px}.retail-title{text-align:center;font-weight:bold;text-decoration:underline}.retail-form .band{font-weight:bold;background:#eee}.retail-form td.n{width:6%;font-weight:bold}.retail-form td.label{width:35%;font-weight:bold}.retail-form td.fill{width:59%}.retail-page{page-break-after:always}.retail-page:last-child{page-break-after:auto}table{border-collapse:collapse;width:100%}td,th{border:1px solid #999;padding:7px}h1{text-align:center;font-size:18pt}h2{font-size:13pt;margin-top:18px}.pre{white-space:pre-wrap}img.photo{max-width:230px;max-height:200px}
+/* Retail pre-sanction: two-page Annexure 19 print layout */
+.retail-form{font-family:Arial,Helvetica,sans-serif;color:#111;font-size:10px;line-height:1.24}
+.retail-page{width:100%;max-width:190mm;margin:auto;box-sizing:border-box;background:#fff}
+.retail-head{display:flex;justify-content:space-between;align-items:center;border-bottom:1.2px solid #222;padding:0 0 5px;margin-bottom:5px}
+.retail-brand{font-weight:700;font-size:14px}.retail-annex{font-weight:bold;font-size:10px;text-align:right}
+.retail-title{text-align:center;font-weight:700;font-size:11.5px;text-decoration:underline;margin:5px 0 9px;letter-spacing:.1px}
+.retail-form table{width:100%;border-collapse:collapse;table-layout:fixed;margin:0}
+.retail-form td,.retail-form th{border:1px solid #777;padding:4px 5px;vertical-align:top;overflow-wrap:anywhere;font-weight:normal;background:white}
+.retail-form td.n{width:6%;text-align:center;font-weight:bold}
+.retail-form td.label{width:35%;font-weight:600}
+.retail-form td.fill{width:59%;min-height:16px;white-space:pre-wrap}
+.retail-form .band{font-weight:700;background:#efefef!important;padding:4px 5px}
+.retail-form .subrow td{font-size:9.7px;padding:3px 5px}
+.retail-form .line{display:flex;gap:6px;justify-content:space-between}.retail-form .sign{margin:20px 0 0 auto;text-align:center;width:43%}
+.retail-form .sign .rule{border-top:1px solid #222;margin:0 0 5px}
+.retail-form .tiny{font-size:9px}.retail-form .v{white-space:pre-wrap;overflow-wrap:anywhere}
+.retail-form .pagebreak{break-before:page;page-break-before:always}
+.retail-form .detailtable th{background:#f0f0f0;font-weight:700}
+.retail-form .detailtable td{text-align:left}
+@media print{
+ @page{size:A4 portrait;margin:9mm 10mm}
+ .retail-page{width:190mm;max-width:100%;margin:0;break-inside:avoid}
+ .retail-form{font-size:9.3px;line-height:1.19}
+ .retail-form td,.retail-form th{padding:3px 4px}
+ .retail-form .subrow td{padding:2.5px 4px;font-size:9px}
+ .retail-form .retail-title{margin:3px 0 7px}
+ .retail-form .retail-head{padding-bottom:3px}
+ .retail-form .sign{margin-top:15px}
+}
+</style></head><body>${reportHtml(x)}</body></html>`;download(new Blob(['\ufeff',full],{type:'application/msword'}),(x.customer||'Inspection').replace(/[^a-z0-9 _-]/gi,'_')+'_Report.doc','application/msword')}
 function download(blob,name){let a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;document.body.append(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove()},500)}
 async function showBackups(){document.querySelector('#app').innerHTML=`<section class="panel noprint"><h2>Backup / Restore</h2><p>Export all saved visits (including photographs) to a JSON file, or import an earlier backup. Keep the backup secure. It contains personal data in readable form.</p><div class="actions"><button class="primary" onclick="exportData()">Export JSON backup</button></div><label>Import backup file</label><input type="file" id="backupfile" accept="application/json,.json" onchange="importData(this.files[0])"><p class="warning">Import will add or replace visits with matching IDs. This browser's data can be deleted if app/site storage is cleared. A local backup is essential.</p></section>`}
 async function exportData(){let data={app:'Bank Inspection Desk',version:2,exported:new Date().toISOString(),visits:await all()};download(new Blob([JSON.stringify(data,null,2)],{type:'application/json'}),'inspection-backup-'+new Date().toISOString().slice(0,10)+'.json')}
