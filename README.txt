@@ -1,15 +1,7 @@
-BANK INSPECTION DESK | Prototype V2
+Bank Inspection Desk V3 Privacy
 
-Open index.html in a modern browser. New report categories:
-- Retail pre-sanction: based on user-provided Bank of Baroda Annexure-19 (2 pages), organized into digital sections.
-- Retail post-sanction: newly drafted, NOT bank-prescribed.
-- MSME pre-sanction: newly drafted, NOT bank-prescribed.
-- MSME post-sanction: newly drafted, NOT bank-prescribed.
-- Existing stock, property, business unit and branch audit templates retained.
-- Legacy v1 pre/post records remain accessible via Saved Visits, if present in same browser origin.
+Upload index.html to the root of your existing GitHub Pages repository, replacing the previous index.html.
 
-Fill forms, mark checklist items, add notes and photos, save locally, generate print/PDF or editable HTML-based .doc report. Export/restore JSON backup.
+After Print / Save PDF, verify the PDF file exists. Then click PDF saved? Delete this visit + photos, and confirm. This removes that inspection and its photos from the browser IndexedDB and clears the report display. The app cannot verify whether browser print-to-PDF succeeded, so deletion must be confirmed by the user. Previous backups, downloaded documents and PDFs cannot be remotely deleted.
 
-SECURITY: NOT approved for live banking data. No encryption, access control, secure server, audit trail, controlled retention, or bank IT review. Do not input confidential customer or account details until approved. Downloaded backups are unencrypted.
-
-CUSTOMIZATION: Retail Pre follows the provided source form in substance, not pixel-perfect appearance. Housing-loan-only fields are optional. Retail Post and MSME formats are provisional templates; confirm latest bank formats and sanction-specific requirements before production use. Browser storage can be lost. Local file and hosted site are different storage origins.
+IMPORTANT: GitHub Pages is not appropriate for real confidential bank customer information without institutional approval and appropriate security controls.
